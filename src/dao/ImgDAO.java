@@ -53,7 +53,7 @@ public class ImgDAO {
         return img;
     }
 
-    public ArrayList<Img> getPathsByRandomly(int n) {
+    public ArrayList<Img> getPathsRandomly(int n) {
         Connection conn;
         Statement stmt = null;
         ResultSet rs = null;

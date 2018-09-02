@@ -32,7 +32,7 @@
     //首页显示图片数
     int imgCount = 5;
     ImgDAO imgdao = new ImgDAO();
-    ArrayList<Img> paths = imgdao.getPathsByRandomly(imgCount);
+    ArrayList<Img> paths = imgdao.getPathsRandomly(imgCount);
     User user = (User) session.getAttribute("user");
 %>
 
