@@ -3,15 +3,17 @@ package dao;
 import entity.User;
 import util.DBHelper;
 
-import javax.servlet.http.Cookie;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class UserDAO {
-
+    //查询用户
     public User queryUserByUsername (String name) {
         Connection conn = null;
         Statement stmt = null;
@@ -50,11 +52,12 @@ public class UserDAO {
                 }
             }
             return u;
-        }else
+        } else
             return null;
 
     }
 
+    //添加用户
     public Boolean insertUser (User user) {
         Connection conn = null;
         PreparedStatement ptmt = null;
@@ -83,6 +86,7 @@ public class UserDAO {
         return false;
     }
 
+    //检擦密码
     public Boolean checkPassword (User user) {
         if (user.getUsername() != null && user.getPassword() != null) {
             return (user.getPassword().equals(queryUserByUsername(user.getUsername()).getPassword()));
@@ -90,5 +94,26 @@ public class UserDAO {
         return false;
     }
 
+    //上传图片
+    public void uploadImg (File i, String username) throws IOException {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy"+File.separator+"MM"+File.separator);
+        String path = df.format(new Date());
+//        File path = new File(date);
+        File img = new File(path+i);
+        if(img.exists()){
+            File newImg = new File(new SimpleDateFormat("dd_HH_mm_ss").format(new Date()));
+            if (newImg.exists())
+                throw new java.io.IOException("file exists");
+            boolean success = img.renameTo(newImg);
+            if (!success) {
+                System.out.println("success");
+            }
+        }
 
+    }
+
+    public static void main (String[] args) {
+        UserDAO dao = new UserDAO();
+//        dao.uploadImg();
+    }
 }

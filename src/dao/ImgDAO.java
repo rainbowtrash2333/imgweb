@@ -4,13 +4,14 @@ import entity.Img;
 import util.DBHelper;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 public class ImgDAO {
-
-    public Img getImgById(int id){
+    //通过id返回img
+    public Img getImgById (int id) {
         Connection conn;
         Statement stmt = null;
         ResultSet rs = null;
@@ -30,22 +31,20 @@ public class ImgDAO {
                 img.setDislike(rs.getInt("dislike"));
                 img.setLabel(rs.getString("Label"));
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            if(stmt!=null){
-                try{
+        } finally {
+            if (stmt != null) {
+                try {
                     stmt.close();
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-            if(rs!=null){
-                try{
+            if (rs != null) {
+                try {
                     rs.close();
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -53,7 +52,8 @@ public class ImgDAO {
         return img;
     }
 
-    public ArrayList<Img> getPathsRandomly(int n) {
+    //随机返回n个path
+    public ArrayList<Img> getPathsRandomly (int n) {
         Connection conn;
         Statement stmt = null;
         ResultSet rs = null;
@@ -78,24 +78,47 @@ public class ImgDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            if(stmt!=null){
-                try{
+        } finally {
+            if (stmt != null) {
+                try {
                     stmt.close();
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-            if(rs!=null){
-                try{
+            if (rs != null) {
+                try {
                     rs.close();
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }
         return imgs;
     }
+
+    //插入img
+    public void insertImg (Img img) {
+        Connection conn = null;
+        PreparedStatement ptmt = null;
+
+        //判断用户名是否存在
+        try {
+            conn = DBHelper.getConnection();
+            String sql = String.format("insert into imgweb.img (name, path,uploader)values(\"%s\",\"%s\",\"%s\"););", img.getName(), img.getPath(), img.getUploader());
+            ptmt = conn.prepareStatement(sql);
+            ptmt.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptmt != null) {
+                try {
+                    ptmt.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }
+
