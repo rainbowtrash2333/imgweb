@@ -22,6 +22,8 @@ import static util.CreateFileHelper.createFile;
 @WebServlet("/upload")
 @MultipartConfig
 public class UploadServlet extends HttpServlet {
+
+    //上传文件,并插入数据库
     protected void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //获得长传者的username
         String username = request.getParameter("username");
@@ -72,6 +74,6 @@ public class UploadServlet extends HttpServlet {
 
         request.getRequestDispatcher("/detail.jsp?id="+id).forward(request,response);
     }
-    protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet (HttpServletRequest request, HttpServletResponse response) throws IOException {
     }
 }

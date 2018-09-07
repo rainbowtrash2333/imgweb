@@ -1,6 +1,5 @@
 <%@ page import="dao.ImgDAO" %>
 <%@ page import="entity.Img" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="dao.ImgDAO" %>
 <%@ page import="dao.UserDAO" %>
 <%@ page import="entity.User" %>
@@ -16,6 +15,30 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="${pageContext.request.contextPath}/src/js/jquery-2.0.3.js"></script>
+    <script src="${pageContext.request.contextPath}/src/js/jquery.swipebox.js"></script>
+    <script src="${pageContext.request.contextPath}/src/js/showmore.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/src/css/swipebox.css">
+    <style>
+        .center {
+            float: none;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        html, body, div, h1, h3, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, p, blockquote, pre, form, fieldset, table, th, td { margin: 0; padding: 0; font-family:Arial, Helvetica, sans-serif; }
+        html					{ overflow-y:scroll; }
+        #page   				{ margin:0 auto; padding:50px 0 0 0; }
+        .block 					{ border:1px solid #ddd; line-height:18px; ; padding:15px; margin:0 0 20px 0; }
+        .block h2,h1,h3,h4,h5,h6			{ color: #000000; border-bottom:2px solid #ddd;  font-weight:bold; padding:0 0 8px 0; margin:0 0 20px 0; }
+        .block p				{ margin:0 0 20px 0; }
+
+        /* Shore more styles */
+        .showmore_content		{ position:relative; overflow:hidden; }
+        .showmore_trigger 		{ width:100%; height:45px; line-height:45px; cursor:pointer; }
+        .showmore_trigger span	{ display:block; }
+    </style>
+
 </head>
 <body>
 <%
@@ -69,18 +92,48 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-md-9">
-            <img src="<%=img.getPath()%>" alt="通用的占位符缩略图" class="img-responsive"/>
+        <div class="col-md-10" style="border: 1px none rgba(148,148,148,0.19);border-right-style: solid;">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="<%=img.getPath()%>" class="swipebox " title="My Caption">
+                        <img src="<%=img.getPath()%>" alt="image" class="center img-responsive ">
+                    </a>
+                </div>
+            </div>
+            <div class="row"  id="page">
+                <div class="col-md-12 block showmore_description">
+                    <h2>
+                        小马小马小马小马小马小马小马小马小马
+                    </h2>
+                    <p>
+                        小马小马小马小马小马小马小马小马小马                        小马小马小马小马小马小马小马小马小马
+                        小马小马小马小马小马小马小马小马小马                        小马小马小马小马小马小马小马小马小马
+                        小马小马小马小马小马小马小马小马小马                        小马小马小马小马小马小马小马小马小马
+                        小马小马小马小马小马小马小马小马小马                        小马小马小马小马小马小马小马小马小马
+                        小马小马小马小马小马小马小马小马小马                        小马小马小马小马小马小马小马小马小马
+                        小马小马小马小马小马小马小马小马小马                        小马小马小马小马小马小马小马小马小马
+                        小马小马小马小马小马小马小马小马小马                        小马小马小马小马小马小马小马小马小马
+                        小马小马小马小马小马小马小马小马小马                        小马小马小马小马小马小马小马小马小马
+
+                    </p>
+
+                </div>
+            </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <p>testtesttesttesttesttesttesttettesttest testtettesttesttesttettesttesttesttette
                 sttesttesttettesttesttesttettesttestte sttettesttesttesttettesttesttestte sttesttesttesttesttest</p>
         </div>
     </div>
 </div>
 
+<script type="text/javascript">
+    ;(function ($) {
 
-<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        $('.swipebox').swipebox();
+
+    })(jQuery);
+</script>
+
 </body>
 </html>
