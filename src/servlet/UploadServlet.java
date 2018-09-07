@@ -27,7 +27,7 @@ public class UploadServlet extends HttpServlet {
         String username = request.getParameter("username");
         // 获得description
         String description = request.getParameter("description");
-        System.out.println(description);
+//        System.out.println(description);
         // 获得uploadFile
         Part fileOldPart = request.getPart("uploadFile");
         // MSIE fix.
@@ -36,7 +36,6 @@ public class UploadServlet extends HttpServlet {
         InputStream fileContent = fileOldPart.getInputStream();
 
         //创建file
-//        String file = "D:\\img\\"+changeFileNameByDate(fileName);
         ServletContext context = this.getServletContext();
         String path = "img/upload/"+changeFileNameByDate(fileName);
         String file = context.getRealPath("/")+path;
@@ -68,15 +67,10 @@ public class UploadServlet extends HttpServlet {
         img.setName(fileName);
         img.setPath("/"+path);
         img.setUploader(username);
-//        System.out.println(img.getName());
-//        System.out.println(img.getPath());
-//        System.out.println(description);
-//        System.out.println(img.getUploader());
         ImgDAO imgDAO = new ImgDAO();
-        imgDAO.insertImg(img);
+        int id = imgDAO.insertImg(img);
 
-
-
+        request.getRequestDispatcher("/detail.jsp?id="+id).forward(request,response);
     }
     protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }

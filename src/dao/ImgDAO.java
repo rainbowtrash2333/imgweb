@@ -97,17 +97,20 @@ public class ImgDAO {
         return imgs;
     }
 
-    //插入img
-    public void insertImg (Img img) {
+    //插入img,返回插入的ID
+    public int insertImg (Img img) {
         Connection conn = null;
         PreparedStatement ptmt = null;
-
-        //判断用户名是否存在
+        int id = 0;
         try {
             conn = DBHelper.getConnection();
             String sql = String.format("insert into imgweb.img (name, path,uploader)values(\"%s\",\"%s\",\"%s\");", img.getName(), img.getPath(), img.getUploader());
             ptmt = conn.prepareStatement(sql);
-            ptmt.execute();
+            ptmt.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = ptmt.getGeneratedKeys();
+            if (rs.next()) {
+              id = rs.getInt(1);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -119,6 +122,7 @@ public class ImgDAO {
                 }
             }
         }
+        return id;
     }
 }
 

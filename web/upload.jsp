@@ -24,7 +24,7 @@
             <form method="post" action="/servlet/UploadServlet" enctype="multipart/form-data">
                 选择一个文件:
                 <input type="file" name="uploadFile" />
-                <input name="username" value="<%=user.getUsername()%>">
+                <input type="hidden" name="username" value="<%=user.getUsername()%>">
                 <textarea name="description" id="description" cols="30" rows="10"></textarea>
                 <br/><br/>
                 <input type="submit" value="上传" />

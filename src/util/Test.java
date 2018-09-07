@@ -14,7 +14,7 @@ public class Test {
         img.setName("test");
         img.setPath("/"+"test");
         img.setUploader("za");
-        imgDAO.insertImg(img);
+        System.out.println(imgDAO.insertImg(img));
 
 
     }
