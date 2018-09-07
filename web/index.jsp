@@ -95,7 +95,7 @@
 
                 </li>
                 <li><a href="#">历史</a></li>
-                <li><a href="${pageContext.request.contextPath}/test/test.jsp#modal-container-328608" >上传</a></li>
+                <li><a href="${pageContext.request.contextPath}/upload.jsp" >上传</a></li>
                 <% } else { %>
                 <li><a href="${pageContext.request.contextPath}/user/register.html"><span
                         class="glyphicon glyphicon-user"></span> 注册</a></li>

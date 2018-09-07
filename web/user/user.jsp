@@ -43,5 +43,6 @@
 
 %>
 <h1><%=user.getUsername()%></h1>
+<a href="/index.jsp">index</a>
 </body>
 </html>

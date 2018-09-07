@@ -112,8 +112,5 @@ public class UserDAO {
 
     }
 
-    public static void main (String[] args) {
-        UserDAO dao = new UserDAO();
-//        dao.uploadImg();
-    }
+
 }

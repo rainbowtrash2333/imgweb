@@ -105,7 +105,7 @@ public class ImgDAO {
         //判断用户名是否存在
         try {
             conn = DBHelper.getConnection();
-            String sql = String.format("insert into imgweb.img (name, path,uploader)values(\"%s\",\"%s\",\"%s\"););", img.getName(), img.getPath(), img.getUploader());
+            String sql = String.format("insert into imgweb.img (name, path,uploader)values(\"%s\",\"%s\",\"%s\");", img.getName(), img.getPath(), img.getUploader());
             ptmt = conn.prepareStatement(sql);
             ptmt.execute();
         } catch (Exception e) {
