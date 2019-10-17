@@ -1,6 +1,7 @@
 package entity;
 
 
+import util.MyMD5Util;
 
 import java.sql.*;
 
@@ -47,7 +48,7 @@ public class User {
     }
 
     public void setPassword (String password) {
-        this.password = password;
+        this.password = MyMD5Util.encrypt(password);
     }
 
     public String getUsername () {
@@ -65,3 +66,4 @@ public class User {
 
 
 }
+

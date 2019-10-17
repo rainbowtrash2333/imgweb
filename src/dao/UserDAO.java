@@ -59,7 +59,7 @@ public class UserDAO {
 
     //添加用户
     public Boolean insertUser (User user) {
-        Connection conn = null;
+        Connection conn ;
         PreparedStatement ptmt = null;
         if (user.getUsername() != null && user.getPassword() != null && user.getE_mail() != null) {
             //判断用户名是否存在
